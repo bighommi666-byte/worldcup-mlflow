@@ -1,0 +1,12 @@
+services:
+  mlflow:
+    build: .
+    container_name: worldcup-mlflow
+    ports:
+      - "5000:5000"
+    volumes:
+      # Persist the experiment database and artifacts on the host
+      - ./mlflow.db:/app/mlflow.db
+      - ./mlartifacts:/app/mlartifacts
+      - ./mlruns:/app/mlruns
+    restart: unless-stopped
